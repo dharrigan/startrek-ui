@@ -1,0 +1,7 @@
+^{:watch-dirs ["src/cljs"]
+  :css-dirs ["resources/public/css"]
+  :open-url false}
+{:main startrek.ui.core
+ :npm-deps false
+ :output-to "target/public/main.js"
+ :optimizations :none}

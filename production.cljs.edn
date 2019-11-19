@@ -1,0 +1,4 @@
+{:main startrek.ui.core
+ :output-to "resources/public/main.js"
+ :npm-deps false
+ :optimizations :advanced}

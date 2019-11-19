@@ -1,0 +1,12 @@
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 48px;
+}
+
+.starship {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
