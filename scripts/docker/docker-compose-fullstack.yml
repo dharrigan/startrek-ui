@@ -7,8 +7,11 @@ services:
     image: startrek-ui:latest
     ports:
       - "9500:80"
+    labels:
+      - "traefik.http.routers.startrek-ui.rule=Host(`startrek.docker.localhost`)"
+      - "traefik.docker.network=docker_default"
 
-  startrek:
+  startrek-backend:
     image: startrek:latest
     ports:
       - "8080:8080"
