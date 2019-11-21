@@ -8,6 +8,7 @@ services:
     ports:
       - "9500:80"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.startrek-ui.rule=Host(`startrek.docker.localhost`)"
       - "traefik.docker.network=docker_default"
 
