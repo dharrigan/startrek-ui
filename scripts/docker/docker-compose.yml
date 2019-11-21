@@ -1,0 +1,9 @@
+---
+
+version: "3.7"
+services:
+
+  startrek-ui:
+    image: startrek-ui:latest
+    ports:
+      - "9500:80"
