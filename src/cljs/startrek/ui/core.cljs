@@ -91,8 +91,8 @@
   [ant-man/layout
    [render-header]
    [ant-man/layout-content {:style {:padding "0 50px"}}
-    [ant-man/row
-     [ant-man/col {:span 12 :offset 6}
+    [ant-man/row {:justify :center}
+     [ant-man/col {:xs {:span 11 :offset 1} :lg {:span 6 :offset 4}}
       [:div>img {:src "images/united-federation-of-planets.png"}]]]
     [render-footer]]])
 
