@@ -12,16 +12,18 @@
 (defonce modal-visible (r/atom false))
 (defonce route-match (r/atom nil))
 
+(def backend-url "http://startrek.harrigan.online/api/starships")
+
 (defn to-clj
   [data]
   (js->clj data :keywordize-keys true))
 
 (defn fetch-starships
   [data]
-  (GET "http://localhost:8080/api/starships" {:handler #(reset! data %)
-                                              :finally #(ant-man/message {:level :success
-                                                                          :content "Loaded"
-                                                                          :duration 2})}))
+  (GET backend-url {:handler #(reset! data %)
+                    :finally #(ant-man/message {:level :success
+                                                :content "Loaded"
+                                                :duration 2})}))
 
 (defn sorter
   [data1 data2 field]
