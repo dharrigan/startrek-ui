@@ -12,7 +12,7 @@
 (defonce modal-visible (r/atom false))
 (defonce route-match (r/atom nil))
 
-(def backend-url "http://startrek.harrigan.online/api/starships")
+(def backend-url "/api/starships")
 
 (defn to-clj
   [data]
@@ -94,8 +94,12 @@
    [render-header]
    [ant-man/layout-content {:style {:padding "0 50px"}}
     [ant-man/row {:justify :center}
-     [ant-man/col {:xs {:span 11 :offset 1} :lg {:span 6 :offset 4}}
-      [:div>img {:src "images/united-federation-of-planets.png"}]]]
+     [ant-man/col
+      [:div>img {:style {:max-width "100%"
+                         :max-height "100%"
+                         :height "auto"
+                         :display :table
+                         :margin "0 auto"} :src "images/united-federation-of-planets.png"}]]]
     [render-footer]]])
 
 (defn landing-page
