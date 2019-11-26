@@ -20,4 +20,7 @@
  :aliases {:fig {:jvm-opts ["-Dclojure.server.repl={:port,55556,:accept,clojure.core.server/io-prepl}"]
                  :main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}
 
-           :build-prod {:main-opts ["-m" "figwheel.main" "-bo" "production"]}}}
+           :build-prod {:main-opts ["-m" "figwheel.main" "-bo" "production"]}}
+
+ :mvn/repos {"central" {:url "http://nexus/repository/maven-public/"}
+             "clojars" {:url "http://nexus/repository/clojars/"}}}
