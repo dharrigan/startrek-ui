@@ -1,4 +1,4 @@
 #!/bin/bash
 
 clojure -A:build-prod
-docker build -f scripts/docker/Dockerfile -t .
+docker build -f scripts/docker/Dockerfile -t startrek-ui .
