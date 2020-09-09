@@ -1,8 +1,9 @@
-(ns ^:figwheel-hooks startrek.ui.core
+(ns ^:figwheel-hooks startrek.ui.main
   (:require
    [ajax.core :refer [GET]]
    [ant-man.core :as ant-man]
    [reagent.core :as r]
+   [reagent.dom :as rdom]
    [reitit.coercion.spec :as rss]
    [reitit.frontend :as rf]
    [reitit.frontend.easy :as rfe]))
@@ -12,7 +13,15 @@
 (defonce modal-visible (r/atom false))
 (defonce route-match (r/atom nil))
 
+;; If running in a container, or deployed as as service with a proxy in front,
+;; then uncomment this line and comment the other backend-url line. There is
+;; an example of running Traefik as a reverse-proxy in the scripts directory.
 (def backend-url "/api/starships")
+
+;; If running locally, with both this UI and the starship project that serves
+;; up the data, then use the line below so that this frontend can talk to the
+;; backend on the same machine.
+;(def backend-url "http://localhost:8080/api/starships")
 
 (defn to-clj
   [data]
@@ -125,11 +134,11 @@
    router
    on-navigate
    {:use-fragment false}) ; I prefer no hashes...thank you!
-  (r/render [landing-page]
-            (js/document.getElementById "app")))
+  (rdom/render [landing-page]
+               (js/document.getElementById "app")))
 
 (defn ^:after-load remount
   []
   (mount))
 
-(defonce letsgogogo (do (mount) true))
+(defonce engage (do (mount) true))

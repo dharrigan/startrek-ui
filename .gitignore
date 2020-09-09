@@ -25,4 +25,4 @@ target
 resources/public/main.js
 node_modules
 .prepl-port
-.conjure.edn
+.clj-kondo

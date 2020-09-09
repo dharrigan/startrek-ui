@@ -3,23 +3,39 @@
 version: "3.7"
 services:
 
+  # When launching, give Traefik a few moments to detect all the services.
+  reverse-proxy:
+    image: traefik:v2.2.11
+    command:
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--entrypoints.traefik.address=:8888"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.forwardedHeaders.insecure=true"
+      - "--entrypoints.web.proxyProtocol.insecure=true"
+    ports:
+      - "10080:80"
+      - "18888:8888"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
   startrek-ui:
     image: startrek-ui:latest
-    ports:
-      - "9500:80"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.startrek-ui.rule=Host(`startrek.docker.localhost`)"
-      - "traefik.docker.network=docker_default"
+      - "traefik.http.routers.startrek-ui.rule=Host(`localhost`)"
 
   startrek-backend:
     image: startrek:latest
-    ports:
-      - "8080:8080"
     environment:
       RUN_OPTS: "local"
     depends_on:
       - postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.startrek-api.rule=Host(`localhost`) && PathPrefix(`/api`)"
 
   postgres:
     image: postgres

@@ -1,4 +1,4 @@
-{:main startrek.ui.core
+{:main startrek.ui.main
  :output-to "target/public/cljs-out/production/main.js"
  :npm-deps false
  :optimizations :advanced}
