@@ -113,7 +113,7 @@
 
 (defn landing-page
   []
-  (if @route-match
+  (when@route-match
     (let [view (-> @route-match :data :view)]
       [view @route-match])))
 

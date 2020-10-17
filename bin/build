@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-clojure -A:build-prod
+clojure -M:build-prod
 docker build -f scripts/docker/Dockerfile -t startrek-ui .
