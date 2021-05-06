@@ -1,0 +1,9 @@
+---
+
+version: "3.8"
+services:
+
+  startrek-ui:
+    image: startrek-ui:latest
+    ports:
+      - "9500:80" # the port on which the Star Trek UI will respond

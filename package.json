@@ -1,0 +1,20 @@
+{
+  "name": "startrek-ui",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "shadow-cljs": "2.12.5"
+  },
+  "dependencies": {
+    "create-react-class": "^15.7.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3"
+  },
+  "scripts": {
+    "node-repl": "shadow-cljs node-repl",
+    "watch": "shadow-cljs watch ui",
+    "release": "shadow-cljs release ui"
+  }
+}

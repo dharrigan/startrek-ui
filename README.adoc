@@ -1,0 +1,137 @@
+= Star Trek Clojure/script Project
+:author: David Harrigan
+:email: dharrigan@gmail.com
+:docinfo: true
+:doctype: book
+:icons: font
+:numbered:
+:sectlinks:
+:sectnums:
+:setanchors:
+:source-highlighter: highlightjs
+:toc:
+:toclevels: 5
+
+== Introduction
+
+This is a very small, yet surprisingly complete, example of using
+Clojurescript, Reagent and Semantic UI to present and provide
+CRUD-like facilities for a RESTful API.
+
+== Features
+
+* CRUD functionality
+* Basic form validation
+* A nice little interface using Semantic UI React
+* Uses Reagent to handle state (doesn't use re-frame, as this is a very simple example)
+
+== Notes
+
+This is a *very* simple project. It doesn't do anything really fancy,
+like using https://github.com/metosin/malli[Malli] to perform real
+validation of the data, nor does it try to log in anywhere (i.e., by
+doing authentication to the backend). It's just a little Proof Of
+Concept and a little demo on using Clojurescript and React.
+
+Also, I'm quite new to Clojurescript, and as such, I'm very *very*
+sure my code could be vastly improved (for example, quite a lot of
+duplication in the `startrek/modals.cljs` file, however, what is there
+is easy to read, so that is good!)
+
+Send me feedback (see below) if you want to talk to me about this
+little PoC 😁
+
+== Star Trek UI (https://github.com/dharrigan/startrek-ui[this])
+
+The frontend is written using
+https://clojurescript.org/[ClojureScript] with a few other bits and
+bobs, namely:
+
+* https://github.com/thheller/shadow-cljs[shadow-cljs]
+* https://reagent-project.github.io/[Reagent]
+* https://react.semantic-ui.com/[Semantic UI React]
+* https://github.com/JulianBirch/cljs-ajax[clj-ajax]
+
+A full list of the technologies used can be found in the
+`shadow-cljs.edn` file and the `package.json` file.
+
+== Star Trek Backend (https://github.com/dharrigan/startrek[that])
+
+A companion project used to service the requests can be found on
+https://github.com/dharrigan/startrek[github]. Please refer to that
+project on details on how that works and how to run it or build it
+(for use in this project). 😀
+
+== Engage!
+
+There are at least 2 ways to launch this project:
+
+WARNING: Depending on your mode of operation, you *will* require the
+backend https://github.com/dharrigan/startrek[startrek] service
+running in order for the UI to work! Please review that project for
+how to get it up and running. If you are running this UI project using
+Option 2 (see below), then you'll need the startrek docker image
+available (for that, you will need to build the backend startrek
+docker image, using Option 2 of the backend project, i.e., the
+`bin/build` step).
+
+IMPORTANT: This has been tested using `node v15.14.0` and `yarn
+1.22.10`. No promises for versions other than those! :-)
+
+IMPORTANT: This assumes you have
+https://github.com/thheller/shadow-cljs[shadow cljs] installed
+correctly (especially for Option 1 usage, see below)
+
+=== Option 1 - REPL
+
+First install the dependencies using `yarn install`, then fire up the
+system using `yarn watch`. This will create a HTTP server listening on
+port 9500, a nREPL server and a few other things which you can
+discover on the output to the terminal.
+
+NOTE: The port can be overridden by setting the environment variable
+`PORT`, i.e., `PORT=9501 yarn watch`
+
+Open up a browser at http://localhost:9500 and, if you have the
+backend service running, with luck you should see a list of starships
+after the response from the backend has been fetched :-)
+
+=== Option 2 - Full Stack
+
+IMPORTANT: This approach assumes that you have the `startrek` backend
+project built as a docker image and is available locally. Please refer
+to https://github.com/dharrigan/startrek[that] project for more
+details on how to build the docker image.
+
+To run up the entire system, including the frontend, backend and
+https://traefik.io/traefik/[Traefik] (for proxying), then simply run
+the command:
+
+`bin/run-docker-fullstack`
+
+This will run up everything. Once running successfully, you can open
+your browser at http://localhost:9500 to obtain a list of Starships.
+
+== License
+
+Find the full https://unlicense.org/[unlicense] in the `UNLICENSE` (and
+`LICENSE`) file, but here's a snippet:
+
+```
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+```
+
+== Feedback
+
+I welcome feedback. I can usually be found hanging out in the `#clojure-uk`
+channel on https://clojurians.slack.com[Clojurians] Slack. You can also email
+me if you wish :-)
+
+== Finally!
+
+*Live Long and Prosper!*

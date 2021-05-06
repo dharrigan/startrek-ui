@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+yarn release
+docker build -f scripts/docker/Dockerfile -t startrek-ui .
