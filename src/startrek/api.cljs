@@ -2,7 +2,9 @@
   (:require
    [ajax.core :refer [DELETE GET PATCH POST]]))
 
-(def ^:private url "http://localhost:9503/api/starships")
+(goog-define BASE-URL "")
+
+(def ^:private url (str BASE-URL "/api/starships"))
 
 (defn add-starship
   [starship callback]

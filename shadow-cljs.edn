@@ -3,6 +3,7 @@
 
  :dependencies [[cljs-ajax "0.8.3"]
                 [cljsjs/semantic-ui-react "0.88.1-0"]
+                [environ "1.2.0"]
                 [reagent "1.0.0"]]
 
  :dev-http {#shadow/env ["PORT" :as :int :default 9500] "public"}
@@ -11,5 +12,7 @@
                :output-dir "public/js"
                :asset-path "/js"
                :modules {:main {:init-fn startrek.main/init}}
+               :dev {:closure-defines {startrek.api/BASE-URL "http://localhost:9503"}}
+               :release {:closure-defines {startrek.api/BASE-URL "https://startrek.harrigan.online"}}
                :compiler-options {:infer-externs :auto}
                :js-options {:anon-fn-naming-policy :unmapped}}}}
