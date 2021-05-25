@@ -2,15 +2,27 @@
   (:require
    [clojure.string :refer [capitalize]]
    [reagent.core :as r]
+   [reitit.frontend.easy :as rfe]
    [startrek.components :as c]
    [startrek.db :as db]
-   [startrek.modals :as modals]))
+   [startrek.modals :as modals]
+   [startrek.the-queen :as the-queen]))
 
 (set! *warn-on-infer* true)
 
 (defn ^:private add-starship
   []
   (db/update-state :add-starship-modal true))
+
+(defn ^:private talk-to-the-queen
+  []
+  (reset! the-queen/can-talk true)
+  (rfe/push-state the-queen/talk))
+
+(defn queen-has-finished-talking
+  []
+  (reset! the-queen/can-talk false)
+  (rfe/push-state :startrek.main/homepage))
 
 (defn ^:private delete-starship
   [starship]
@@ -83,9 +95,12 @@
                                :color :red
                                :onClick #(delete-starship starship)}]]]) (db/get-state :starships))]])))
 
-(defn ^:private render-add-starship-button
+(defn ^:private render-additional-buttons
   []
   [:> c/s-container {:textAlign :right}
+   [:> c/s-button {:color :blue
+                   :onClick #(talk-to-the-queen)}
+    "TALK TO THE QUEEN"]
    [:> c/s-button {:color :green
                    :onClick #(add-starship)}
     "ADD STARSHIP"]])
@@ -99,4 +114,20 @@
     (db/get-state :delete-starship-modal) [modals/delete-starship]
     (db/get-state :edit-starship-modal) [modals/edit-starship (db/get-state :starship)]
     (db/get-state :view-starship-modal) [modals/view-starship])
-   [render-add-starship-button]])
+   [render-additional-buttons]])
+
+(defn queen-reply
+  []
+  [:> c/s-container {:style {:marginTop "3em"}}
+   [:h1 "You will be assimilated! Resistance is Futile!"]
+   [:> c/s-button {:color :green
+                   :onClick #(queen-has-finished-talking)}
+    "RETURN TO THE HOMEPAGE"]])
+
+(defn go-away
+  []
+  [:> c/s-container {:style {:marginTop "3em"}}
+   [:h1 "You aren't a borg!"]
+   [:> c/s-button {:color :red
+                   :onClick #(rfe/push-state :startrek.main/homepage)}
+    "RETURN TO THE HOMEPAGE"]])
