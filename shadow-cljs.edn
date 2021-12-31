@@ -1,10 +1,10 @@
 ;; shadow-cljs configuration
 {:source-paths ["src"]
 
- :dependencies [[cljs-ajax "0.8.3"]
+ :dependencies [[cljs-ajax "0.8.4"]
                 [cljsjs/semantic-ui-react "0.88.1-0"]
                 [environ "1.2.0"]
-                [metosin/reitit "0.5.13"]
+                [metosin/reitit "0.5.15"]
                 [reagent "1.1.0"]]
 
  :dev-http {#shadow/env ["PORT" :as :int :default 9500] "public"}

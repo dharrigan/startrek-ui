@@ -6,3 +6,4 @@ public/js
 tags.lock
 tags.temp
 .shadow-cljs
+.yarn/

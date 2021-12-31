@@ -16,5 +16,6 @@
     "node-repl": "shadow-cljs node-repl",
     "watch": "shadow-cljs watch ui",
     "release": "shadow-cljs release ui"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
